@@ -11,6 +11,7 @@
 - name: launch couchdb-lucene
   docker:
     name: couchdb-lucene
+    hostname: couchdb-lucene
     image: andrewrothstein/couchdb-lucene:latest
     state: started
     restart_policy: always
@@ -30,6 +31,7 @@
 - name: launch couchdb
   docker:
     name: couchdb
+    hostname: couchdb
     image: andrewrothstein/couchdb:latest
     restart_policy: always
     state: started

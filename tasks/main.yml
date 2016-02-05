@@ -35,6 +35,8 @@
     image: andrewrothstein/couchdb:latest
     restart_policy: always
     state: started
+    links:
+      - couchdb-lucene
     ports:
       - "{{docker_couchdb_host_port}}:5984"
     volumes_from: couchdb-data

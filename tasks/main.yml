@@ -17,7 +17,8 @@
     restart_policy: always
     ports:
       - "{{docker_couchdb_lucene_host_port}}:5985"
-    volumes_from: couchdb-lucene-data
+    volumes_from:
+      - couchdb-lucene-data
 
 - name: create couchdb-data
   docker:
@@ -39,4 +40,5 @@
       - "couchdb-lucene:couchdb-lucene"
     ports:
       - "{{docker_couchdb_host_port}}:5984"
-    volumes_from: couchdb-data
+    volumes_from:
+      - couchdb-data

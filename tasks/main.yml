@@ -2,7 +2,7 @@
 - name: create couchdb-lucene-data
   docker:
     name: couchdb-lucene-data
-    image: andrewrothstein/couchdb-lucene:latest
+    image: {{docker_couchdb_lucene_container}}
     state: present
     volumes:
     - /opt/couchdb-lucene/indexes
@@ -12,7 +12,7 @@
   docker:
     name: couchdb-lucene
     hostname: couchdb-lucene
-    image: andrewrothstein/couchdb-lucene:latest
+    image: {{docker_couchdb_lucene_container}}
     state: started
     restart_policy: always
     ports:
@@ -23,7 +23,7 @@
 - name: create couchdb-data
   docker:
     name: couchdb-data
-    image: andrewrothstein/couchdb:latest
+    image: {{docker_couchdb_container}}
     state: present
     volumes:
     - /usr/local/var/lib/couchdb
@@ -33,7 +33,7 @@
   docker:
     name: couchdb
     hostname: couchdb
-    image: andrewrothstein/couchdb:latest
+    image: {{docker_couchdb_container}}
     restart_policy: always
     state: started
     links:

@@ -1,0 +1,6 @@
+---
+docker_couchdb_host_port : 5984
+docker_couchdb_lucene_host_port : 5985
+
+docker_couchdb_container: 'andrewrothstein/couchdb:latest'
+docker_couchdb_lucene_container : 'andrewrothstein/couchdb-lucene:latest'

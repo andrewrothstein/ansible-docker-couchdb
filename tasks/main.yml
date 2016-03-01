@@ -5,8 +5,8 @@
     image: '{{docker_couchdb_lucene_container}}'
     state: present
     volumes:
-    - /opt/couchdb-lucene/indexes
-    - /opt/couchdb-lucene/logs
+      - /opt/couchdb-lucene/indexes
+      - /opt/couchdb-lucene/logs
     
 - name: launch couchdb-lucene
   docker:
@@ -16,9 +16,11 @@
     state: started
     restart_policy: always
     ports:
-    - "{{docker_couchdb_lucene_host_port}}:5985"
+      - "{{docker_couchdb_lucene_host_port}}:5985"
     volumes_from:
-    - couchdb-lucene-data
+      - couchdb-lucene-data
+    extra_hosts:
+      couch-tunnel: '{{ hostvars[inventory_hostname]["ansible_default_ipv4"]["address"] }}'
 
 - name: create couchdb-data
   docker:
@@ -26,8 +28,8 @@
     image: '{{docker_couchdb_container}}'
     state: present
     volumes:
-    - /usr/local/var/lib/couchdb
-    - /usr/local/var/log/couchdb
+      - /usr/local/var/lib/couchdb
+      - /usr/local/var/log/couchdb
     
 - name: launch couchdb
   docker:
@@ -37,8 +39,10 @@
     restart_policy: always
     state: started
     links:
-    - "couchdb-lucene:couchdb-lucene"
+      - "couchdb-lucene:couchdb-lucene"
     ports:
-    - "{{docker_couchdb_host_port}}:5984"
+      - "{{docker_couchdb_host_port}}:5984"
     volumes_from:
-    - couchdb-data
+      - couchdb-data
+    extra_hosts:
+      couch-tunnel: '{{ hostvars[inventory_hostname]["ansible_default_ipv4"]["address"] }}'

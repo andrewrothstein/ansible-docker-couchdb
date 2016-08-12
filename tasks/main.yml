@@ -1,7 +1,7 @@
 ---
 - name: create couchdb-lucene-data
   become: yes
-  become: '{{docker_couchdb_user}}'
+  become_user: '{{docker_couchdb_user}}'
   docker:
     name: couchdb-lucene-data
     image: '{{docker_couchdb_lucene_container}}'
@@ -12,7 +12,7 @@
     
 - name: launch couchdb-lucene
   become: yes
-  become: '{{docker_couchdb_user}}'
+  become_user: '{{docker_couchdb_user}}'
   docker:
     name: couchdb-lucene
     hostname: couchdb-lucene
@@ -28,7 +28,7 @@
 
 - name: create couchdb-data
   become: yes
-  become: '{{docker_couchdb_user}}'
+  become_user: '{{docker_couchdb_user}}'
   docker:
     name: couchdb-data
     image: '{{docker_couchdb_container}}'
@@ -39,7 +39,7 @@
     
 - name: launch couchdb
   become: yes
-  become: '{{docker_couchdb_user}}'
+  become_user: '{{docker_couchdb_user}}'
   docker:
     name: couchdb
     hostname: couchdb
